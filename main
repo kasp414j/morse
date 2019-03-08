@@ -142,7 +142,7 @@ input.onButtonPressed(Button.AB, function () {
         `)
 })
 radio.setTransmitPower(7)
-radio.setGroup(1)
+radio.setGroup(RadioStation)
 basic.forever(function () {
     if (RadioStation > 255) {
         RadioStation = 0
