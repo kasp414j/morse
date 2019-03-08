@@ -69,7 +69,7 @@ input.onGesture(Gesture.ScreenDown, function () {
         . . . . .
         . . . . .
         . . . . .
-        . . . . .
+        . # # # #
         `)
 })
 radio.onReceivedNumber(function (receivedNumber) {
@@ -147,7 +147,7 @@ basic.forever(function () {
     if (RadioStation > 255) {
         RadioStation = 0
     }
-    if (receivedNumber == 0) {
+    if (receivedNumber == true) {
         basic.showNumber(RadioStation)
         RadioStation = RadioStation + 1
         basic.pause(5000)
