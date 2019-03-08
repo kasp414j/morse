@@ -1,3 +1,5 @@
+let RadioStation = 0
+let receivedNumber = 0
 input.onButtonPressed(Button.A, function () {
     basic.showLeds(`
         . . . . .
@@ -95,13 +97,21 @@ radio.onReceivedNumber(function (receivedNumber) {
             . . . # .
             . . # . .
             `)
-    } else {
+    } else if (receivedNumber == 3) {
         basic.showLeds(`
             # . . . #
             . # . # .
             . . # . .
             . # . # .
             # . . . #
+            `)
+    } else {
+        basic.showLeds(`
+            . . # . .
+            . . # . .
+            . . # . .
+            . . # . .
+            . . # . .
             `)
     }
     basic.pause(100)
@@ -113,5 +123,33 @@ radio.onReceivedNumber(function (receivedNumber) {
         . . . . .
         `)
 })
+input.onButtonPressed(Button.AB, function () {
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        . . # . .
+        . . # . .
+        . . # . .
+        `)
+    radio.sendNumber(4)
+    basic.pause(100)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+})
 radio.setTransmitPower(7)
 radio.setGroup(1)
+basic.forever(function () {
+    if (RadioStation > 255) {
+        RadioStation = 0
+    }
+    if (receivedNumber == 0) {
+        basic.showNumber(RadioStation)
+        RadioStation = RadioStation + 1
+        basic.pause(5000)
+    }
+})
